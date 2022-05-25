@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { AnimationContex } from "./main/contexts/Animation";
+import { AuthProvider } from "./main/contexts/AuthContex";
+import { NoteContex } from "./main/contexts/NoteContex";
+import { Main } from "./main/Main";
 
 function App() {
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AuthContex>
+        <Main />
+      </AuthContex>
     </div>
   );
 }
+
+
+export const AuthContex = ({ children }: any) => {
+  return (
+    <AnimationContex>
+      <AuthProvider>
+        <NoteContex>
+          {children}
+        </NoteContex>
+      </AuthProvider>
+    </AnimationContex>
+  )
+}
+
 
 export default App;

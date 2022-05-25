@@ -1,0 +1,36 @@
+.animation_loading, .add_loading{
+    width: 20px;
+    height: 20px;
+    border: solid red;
+    border-right: solid white;
+    border-radius: 50%;
+    animation: loading .5s ease-in infinite;
+    margin: auto;
+}
+
+.animation_padre{
+    position: sticky;
+    top: 0;
+    margin: auto;
+    background-color: rgba(88, 75, 75, 0.377);
+    height:0;
+}
+
+
+.animation_loading{
+    width: 20px;
+    height: 20px;
+    border: solid red;
+    border-right: solid white;
+    border-radius: 50%;
+    animation: loading .5s ease-in infinite;
+    position: relative;
+
+    top: 100px;
+}
+
+@keyframes loading {
+    from{
+        transform: rotate(360deg);
+    }
+}

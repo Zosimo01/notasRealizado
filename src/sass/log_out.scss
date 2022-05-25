@@ -1,0 +1,144 @@
+.joinLogin_logout{
+
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.rotate_title{
+    position: absolute;
+    top: 50%;
+    left: -10%;
+    transform: rotate(45deg);
+    width: 100%;
+}
+
+.rotate_title .title_log_out{
+    display: block;
+    font-family: monospace;
+    border-right: solid;
+    white-space: nowrap;
+    width: 19ch;
+    font-size: 40px;
+    overflow: hidden;
+    animation: typing 4s steps(19), animat .5s infinite step-end alternate;
+}
+
+@keyframes typing {
+    from{
+        width: 0;
+    }
+}
+
+
+@keyframes animat {
+    50%{
+        border-color: transparent;
+    }
+}
+
+
+.cotainer_log_out, .cotainer_log_login{
+   
+    box-sizing: border-box;
+    width:60%;
+    min-width: 500px;
+    min-height: 600px;
+    height: 100vh;
+    margin: auto;
+    position: relative;
+    color: wheat;
+}
+
+.cotainer_log_login{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width:480px) {
+    .cotainer_log_out,.cotainer_log_login{
+        width: 100%;
+        min-width: 0;
+    }
+    .rotate_title{
+        top: 20%;
+    }
+}
+
+.container_button{
+    box-sizing: border-box;
+    position: absolute;
+    right: 0;
+    top: 30%;
+
+}
+
+.login , .logout{
+    box-sizing: border-box;
+
+    background-color: rgba(47, 222, 235, 0.397);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    width: 100px;
+    height: 100px;
+    margin: 10px 0;
+}
+.login:hover{
+   border: 5px solid;
+    background-color: aqua;
+    color: black;
+}
+
+.logout:hover{
+    border: 5px solid;
+    background-color: aqua;
+    color: black;
+}
+
+.login:active{
+    background-color: rgba(240, 248, 255, 0.247);
+}
+.logout:active{
+    background-color: rgba(240, 248, 255, 0.247);   
+}
+
+.login p, .logout p{
+    width: 100%;
+    text-align: center;
+    text-align: center;
+}
+
+//LOGIN
+
+.user_login{
+    margin: 5px;
+    padding: 10px;
+    display: flex;
+    border: solid;
+    flex-direction: column;
+    width: 100%;
+}
+
+.user_login input{
+    height: 30px;
+    font-size: 18px;
+    padding: 0 5px;
+    outline: none;
+    border: 0;
+    background-color: rgba(207, 69, 5, 0.603);
+}
+
+.user_botton button{
+    margin: 20px;
+    width: 100px;
+    height: 30px;
+}
+
+.user_botton p{
+    margin:0 10px;
+}

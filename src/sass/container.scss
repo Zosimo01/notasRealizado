@@ -1,0 +1,297 @@
+.container{
+    padding-top: 10px;
+    box-sizing: border-box;
+    // background-color: rgba(13, 224, 70, 0.829);
+    border: solid;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+
+}
+
+.container_title{
+    text-align: center;
+    position: relative;
+    padding-bottom: 6px;
+    color: aliceblue;
+}
+
+.menu_body{
+
+    width: 50px;
+    height:35px;
+    border-radius: 50px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: #2a06f8c7;
+    font-size: small;
+    color: white;
+}
+
+
+.container_note{
+    box-sizing: border-box;
+    
+    display: flex;
+    width: 80%;
+    height: 100%;
+    position: relative;
+    margin: auto; 
+    flex-direction: column;      
+}
+
+.contaienr_cuerpo{
+    display: flex;
+    position: relative;
+    height: 100%;
+    overflow: auto;
+
+}
+
+@media screen and(max-width:950px) {
+    .container_note{
+        width: 90%;
+    }   
+}
+
+@media screen and(max-width:750px) {
+    .container_note{
+        width: 98%;
+    }
+    .container_body{
+        flex: 3 1;
+    }
+}
+
+//CONTAINER LIST
+
+.container_list{
+   
+    border-color: red;
+    width: 210px;
+    min-width: 200px;
+    max-width: 800px;
+    overflow-y: auto;
+    resize: horizontal;
+    scroll-behavior: smooth;
+    padding-bottom: 10px;
+    background-color: antiquewhite;
+  padding: 1px;
+}
+// ESTILOS DE ESCROLLL
+.container_list::-webkit-scrollbar{
+    width: 8px;     /* Tamaño del scroll en vertical */
+    height: 8px;    /* Tamaño del scroll en horizontal */
+    // display: none;  /* Ocultar scroll */
+}
+
+.container_list::-webkit-scrollbar-thumb {
+    background: rgb(139, 9, 9);
+    border-radius: 4px;
+}
+
+.container_list::-webkit-scrollbar-thumb:hover {
+    background: #dd1414;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Cambiamos el fondo cuando esté en active */
+.container_list::-webkit-scrollbar-thumb:active {
+    background-color: #ce1010;
+}
+///////7
+
+.cotainer_option_list{
+    background-color: aquamarine;
+    position:sticky;
+    top: 0;
+    max-width: 210px;
+    z-index: 1;
+}
+.cotainer_option_list button{
+    width: 50%;
+    margin: auto;
+}
+.cotainer_option_list .add_folder{
+    background-color: rgba(105, 99, 99, 0.644);
+    width: 100%;
+    font-size: x-large;
+}
+
+.container_items{
+    float: right;
+    font-size: 20px;
+    width: 100%;
+    // overflow-wrap: hidden;
+}
+
+
+.items{
+
+    margin-top: 10px;
+    margin-left: 5px;
+    height: auto;
+    overflow: hidden;
+    display: block;
+    border-left: 1px solid rgba(135, 139, 125, 0.459);
+    border-left-style: dashed;
+}
+
+.items p{
+   
+    border-bottom: 2px red;
+  
+    color: rgb(11, 24, 97);
+    cursor:pointer;
+    width:auto;
+    white-space: nowrap;
+    padding: 0px 10px 0px 0px;
+    // text-align: justify;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    // hyphens: auto;
+    font-size: smaller;
+    height: 20px;
+    padding-left: 5px;
+}
+.items  span{
+
+    float: right;
+    margin-right: 5px;
+    transform: rotate(0deg);
+
+}
+
+.items p:hover{
+    color: rgb(207, 70, 28);
+    font-weight: bold;
+}
+
+.items img{
+    width: 15px;
+    float: left;
+    margin:3px 0 0 3px;
+}
+
+.inputAddFolder{
+        margin-top: 5px;
+        width: 97%;
+        padding: 1px;
+        outline: none;
+        display: none;
+}
+
+.pruebas:focus{
+    background-color: red;
+}
+
+.itemsMenu{
+    display: none;
+    z-index: 100;
+    position: absolute;
+    background-color: blue;
+    color: white;
+    top: 0;
+    left: 0;
+    
+}
+
+.itemsMenu p{
+    padding: 5px;
+    cursor: pointer;
+}
+.itemsMenu p:active{
+    background-color: aqua;
+}
+
+.renombrar{
+    position: absolute;
+}
+// element add file and folder
+
+#inputForAdd_FILI_FOLDER{
+    width: 95%;
+    padding: 3px;
+    margin-top: 10px;
+}
+
+#submitForAdd_FILI_FOLDER{
+    display: none;
+}
+
+// //CONTAINER BODY
+.container_body{
+
+    flex: 2 1;
+    max-width: 100%;
+    min-width: 200px;
+    position: relative;
+    overflow: hidden;
+    background-color: rgb(22, 16, 16);
+    color: wheat;
+
+}
+
+.button_editables{
+    background-color: rgb(63, 34, 6);
+    // height:100px;
+    top: 0;
+    right: 0;
+    position: absolute;
+ 
+}
+
+.button_editables p{
+    color: greenyellow;
+    background-color: rgba(5, 238, 5, 0.425);
+    text-shadow: black 2px 2px 3px;
+    font-size: large;
+    position: absolute;
+    padding: 3px;
+    font-size: 0;
+    animation: 1s ease-in .5s 1 normal none;
+}
+
+@keyframes animate {
+    50%{ font-size: 20px; }
+    90%{ font-size: 20px; }
+}
+
+.button_editables button{
+    margin: auto;
+    margin: 5px 5px;
+    padding: 2px;
+    
+}
+
+.apuntes{
+    padding-top: 5px;
+    width: 100%;
+    // background-color: rgb(4, 43, 77);
+    position: absolute;
+    height: 100%;
+    overflow: hidden;
+}
+.apuntes textarea{
+    outline: none;
+    width: 100%;
+    // border: none;
+    color: white;
+    background-color: rgb(22, 16, 16);
+    max-width: 100%;
+    min-width: 300px;
+    padding: 10px 5px;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    vertical-align: baseline;
+    // overflow: hidden;
+    // position: absolute;
+    bottom: 0;
+    resize: none;
+    font-size: medium;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    height: 95%;
+}
+
