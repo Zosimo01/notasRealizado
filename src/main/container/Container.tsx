@@ -1,5 +1,5 @@
 
-import { useContext } from "react";
+import { MouseEvent, useContext } from "react";
 
 import { Contex } from "../contexts/AuthContex";
 import { NotesContex } from "../contexts/NoteContex";
@@ -33,6 +33,18 @@ export const Container = (data:Props) => {
     dispatchLogin(false);
   } 
 
+const handleShowItems=(e:MouseEvent)=>{
+  const node = document.querySelector('#container_list') as HTMLElement;
+ 
+  if(node.style.display==='block'){
+    node.style.display ='none';
+  
+  }else{
+    node.style.display ='block'
+  
+  }
+}
+
   return (
     <div className="container" >
       <div className="container_note" >
@@ -57,6 +69,9 @@ export const Container = (data:Props) => {
           } */}
         </div>
         <div className="container_title" >
+          <button className="menu_itemButtom"
+          onClick={handleShowItems}
+          >menu</button>
           <h1>welcomo {data.value}</h1>
         </div>
       </div>

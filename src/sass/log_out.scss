@@ -76,6 +76,10 @@
 
 }
 
+a{
+    color:green
+}
+
 .login , .logout{
     box-sizing: border-box;
 
@@ -131,6 +135,7 @@
     outline: none;
     border: 0;
     background-color: rgba(207, 69, 5, 0.603);
+    color: white;
 }
 
 .user_botton button{
@@ -142,3 +147,15 @@
 .user_botton p{
     margin:0 10px;
 }
+
+ 
+ //// className='a_login'
+
+ .a_login{
+     color: greenyellow;
+     padding: 5px;
+ }
+
+ .a_login:active{
+    color: red;
+ }

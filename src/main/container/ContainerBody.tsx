@@ -27,7 +27,7 @@ export const ContainerBody = () => {
         notes: { getnoteList, uidItem, setnotesList, uidDeletes },
 
     } = useContext(NotesContex);;
-    const {authLogin} = useContext(Contex);
+    const { authLogin } = useContext(Contex);
 
     const { value, handleChange, setcrontroles, setvalue } = useTextarea(frangNote, control);
 
@@ -42,7 +42,7 @@ export const ContainerBody = () => {
             ok: true
         });
     }
-// console.log(uidItem)
+    // console.log(uidItem)
     const handleSaveNote = (e: MouseEvent) => {
         const element = e.target as HTMLElement;
         const name: NameButton = element.dataset.name as NameButton;
@@ -58,7 +58,7 @@ export const ContainerBody = () => {
 
             DispatchTextarea_create({
                 uid: uidItem,
-                _id:getnoteList!._id,
+                _id: getnoteList!._id,
                 token: localStorage.getItem('token') && localStorage.getItem('token'),
                 value: {
                     data: (new Date().getMinutes()).toString(),
@@ -66,21 +66,21 @@ export const ContainerBody = () => {
                     type: 'file',
                     RowsNumb: value.RowsNumb
                 }
-            },authLogin.demo).then(()=>{
+            }, authLogin.demo).then(() => {
                 const node = document.getElementById('button_editables')?.querySelector('p') as HTMLParagraphElement;
-                node.textContent='ok!'
-                node.style.animationName='animate';
-                setTimeout(()=>{
-                node.style.animationName='';
-                },1500);
-            }).catch(()=>{
+                node.textContent = 'ok!'
+                node.style.animationName = 'animate';
+                setTimeout(() => {
+                    node.style.animationName = '';
+                }, 1500);
+            }).catch(() => {
                 const node = document.getElementById('button_editables')?.querySelector('p') as HTMLParagraphElement;
-                node.textContent='error'
-                node.style.animationName='animate'
-                node.style.color='red'
-                setTimeout(()=>{
-                    node.style.animationName='';
-                    },1500);
+                node.textContent = 'error'
+                node.style.animationName = 'animate'
+                node.style.color = 'red'
+                setTimeout(() => {
+                    node.style.animationName = '';
+                }, 1500);
             })
 
         }
@@ -91,8 +91,8 @@ export const ContainerBody = () => {
         }
     }
 
-  
-        const portal = () => {
+
+    const portal = () => {
 
         const elemet = ButtonBody({ handleSaveNote, control_textarea })
 
@@ -101,6 +101,16 @@ export const ContainerBody = () => {
         if (!node) return
         return createPortal(elemet, node);
     }
+
+    const handleOcultItems = () => {
+        const node = document.querySelector('#container_list') as HTMLElement;
+
+        if (node.style.display === 'block') {
+            node.style.display = 'none';
+
+        } 
+    }
+
 
     useEffect(() => {
 
@@ -145,7 +155,7 @@ export const ContainerBody = () => {
         setabrirTarea(false);
         setvalue(frangNote);
 
-    }, [uidDeletes, value.user , setvalue]);
+    }, [uidDeletes, value.user, setvalue]);
 
 
     return (
@@ -154,7 +164,7 @@ export const ContainerBody = () => {
             <div className="container_body" >
 
 
-                <div className="apuntes" >
+                <div className="apuntes" onClick={handleOcultItems} >
                     {
                         obrirTarea
                             ? (<> <textarea name={'value'} id={value._id}
@@ -173,7 +183,7 @@ export const ContainerBody = () => {
                             </textarea>
 
                             </>)
-                            : (<div style={{textAlign:'center'}} >
+                            : (<div style={{ textAlign: 'center' }} >
                                 <h1>WELCOME YOUR NOTE!!!</h1>
                             </div>)
                     }

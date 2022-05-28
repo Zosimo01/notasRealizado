@@ -26,7 +26,7 @@ export const JoinLoginLogOut = () => {
           email: 'demo@gmail.com', 
           password: '123456', demo:'demo' })
       .then(resp=>{
-          console.log(resp)
+         
         dispatchToken({
           name:resp.nameuser,
           ok:resp.ok,
