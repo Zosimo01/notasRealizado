@@ -25,7 +25,7 @@ export const ContainerList = () => {
     const uid_htmlElement = useRef('');
     const typeItemFor_ADD = useRef('');
     const controlgetItems = useRef(false);
-    const controlColorItem = useRef <HTMLElement>({} as HTMLElement)
+    const controlColorItem = useRef<HTMLElement>({} as HTMLElement)
     const online = useRef(true);
 
     const [alertas, setalertas] = useState(0)
@@ -36,25 +36,25 @@ export const ContainerList = () => {
 
     const [listasDeItems, setlistasDeItems] = useState<ItemsListProps[]>([]);
 
-    const { notes, 
+    const { notes,
         getDispatch_notesTextarea,
         setDispatch_uidItemList,
         setDispatch_notesTextarea,
         getDispatch_uidDelete,
         setDispatch_uidContex
-        
-         } = useContext(NotesContex);
+
+    } = useContext(NotesContex);
 
     const { authLogin } = useContext(Contex);
 
     const { positons,
         handlePreventContexMenu,
         htmlElement_id
-    } = PreventMenuContex({ menuItems,setDispatch_uidContex });
+    } = PreventMenuContex({ menuItems, setDispatch_uidContex });
 
     const {
         dispatchOpendTextarea_true,
-        
+
         dispatchLoading_true,
         dispatchLoading_false,
         valueAnamation,
@@ -82,35 +82,37 @@ export const ContainerList = () => {
         const itemName = event.dataset.nameitem as TypesItemMenu;
 
         uid_htmlElement.current = htmlElement_id;
-        
-       const resp = ItemsMenuClick(
-           {action:itemName,
-            htmlElement_id:uid_htmlElement.current,
-            getDispatch_uidDelete, dispatchLoading_false,demo:authLogin.demo },
-           );
-  
-            if(resp?.name==='eliminar'){
-                dispatchLoading_true();
+
+        const resp = ItemsMenuClick(
+            {
+                action: itemName,
+                htmlElement_id: uid_htmlElement.current,
+                getDispatch_uidDelete, dispatchLoading_false, demo: authLogin.demo
+            },
+        );
+
+        if (resp?.name === 'eliminar') {
+            dispatchLoading_true();
             //    const _id = notes.getnoteList?.user;
             //    const idContex = notes.uidContexItem;
-               
-            }
 
-       if(resp?.name==='file'  || resp?.name === 'folder'){
+        }
+
+        if (resp?.name === 'file' || resp?.name === 'folder') {
 
             const element = resp.element;
             const node = resp.parentNode as HTMLElement;
             const name = addLoading(element, 'add_loading');
-            
-        if (node.lastChild?.nodeName === 'DIV') {
-            openItemsAndOcult(node,'block','block');
-    
-        }else{
-           
-                getItems_child(node,name,'form');
-        
+
+            if (node.lastChild?.nodeName === 'DIV') {
+                openItemsAndOcult(node, 'block', 'block');
+
+            } else {
+
+                getItems_child(node, name, 'form');
+
+            }
         }
-       }
         parentNode.blur();
 
         typeItemFor_ADD.current = itemName;
@@ -118,68 +120,69 @@ export const ContainerList = () => {
 
         if (!nodeParent) return;
         setreference_id(nodeParent.id);
-        
+
     }
 
     // GET ITEMS CHILD
 
-    const getItems_child =(parentNode:HTMLElement,name:string,nodename:string)=>{
-        
+    const getItems_child = (parentNode: HTMLElement, name: string, nodename: string) => {
+
         const data = {
             uid: parentNode.id,
             token: localStorage.getItem('token') && localStorage.getItem('token'),
         }
-        
-        DispatchNotes_get(data,authLogin.demo)
-        .then(resp => {
-            resp.list.forEach((da: any) => {
-                
-                CreateItems({
-                    parentNode,
-                    id: da.id,
-                    type: da.type as TypeItem,
-                    value: da.value,
-                    _id: da._id,
-                    margin: '15'
-                });
 
+        DispatchNotes_get(data, authLogin.demo)
+            .then(resp => {
+                resp.list.forEach((da: any) => {
+
+                    CreateItems({
+                        parentNode,
+                        id: da.id,
+                        type: da.type as TypeItem,
+                        value: da.value,
+                        _id: da._id,
+                        margin: '15'
+                    });
+
+                })
+                document.querySelector('.' + name)?.remove()
+                setsmgAdvertencia('')
             })
-        document.querySelector('.' + name)?.remove()
-        setsmgAdvertencia('')
-        })
-        .catch(()=>{
-        setsmgAdvertencia('');
-            document.querySelector('.' + name)?.remove()})
+            .catch(() => {
+                setsmgAdvertencia('');
+                document.querySelector('.' + name)?.remove()
+            })
     }
 
     // ADD FOLDE AND FILE
     const handleFromAdd_FOLDERyFILE = async (e: FormEvent) => {
         e.preventDefault();
-       
+
         const input = document.getElementById('inputForAdd_FILI_FOLDER') as HTMLInputElement;
         const value = input.value;
 
         if (value.length < 1) return;
         const id = (Math.random() * 10000).toString().slice(-5);
-        
+
         const { element, parentNode } = InputAdd_FILE_FOLDER(uid_htmlElement.current);
         element.blur();
         const node = parentNode as HTMLElement;
-       
+
         dispatchLoading_true();
-     
+
         const { eventos } = await DispatchNotes_create({
             uid: reference_id,
             id,
             value: value,
             type: typeItemFor_ADD.current as TypeItem,
             token: localStorage.getItem('token') && localStorage.getItem('token'),
-        },authLogin.demo);
-       
-        if(!eventos){
+        }, authLogin.demo);
+
+        if (!eventos) {
             dispatchLoading_false();
             setsmgAdvertencia('no se pudo crear el archivo');
-           
+
         }
         /// CRATE TEXTAREA
         if (typeItemFor_ADD.current === 'file') {
@@ -194,10 +197,10 @@ export const ContainerList = () => {
                     type: 'file',
                     RowsNumb: 2
                 }
-            },authLogin.demo).then(resp => {
-            
+            }, authLogin.demo).then(resp => {
+
                 setDispatch_notesTextarea(resp.note);
-                getDispatch_notesTextarea(resp.note);
+                getDispatch_notesTextarea({...resp.note,name:value});
                 setDispatch_uidItemList(resp._id)
                 dispatchOpendTextarea_true()
             }).catch(console.log)
@@ -215,10 +218,10 @@ export const ContainerList = () => {
 
         if (eventos.user === authLogin.uid) {
 
-            setlistasDeItems(resp => [ ...resp,payload]);
+            setlistasDeItems(resp => [...resp, payload]);
             dispatchLoading_false();
             setsmgAdvertencia('');
-            setalertas(alertas+1);
+            setalertas(alertas + 1);
         }
 
         if (node.id === 'cotainer_option_list') return;
@@ -233,22 +236,30 @@ export const ContainerList = () => {
             type: eventos.type,
             margin: '15'
         }
-       
-        const { ok,_id } = CreateItems(datosForItem);
-        if(ok){
+
+        const { ok, _id } = CreateItems(datosForItem);
+        if (ok) {
             dispatchLoading_false();
             const node = document.getElementById(_id) as HTMLElement;
             const controlColor = controlColorItem.current as HTMLElement;
 
-            if( node.id !== controlColor.id){
-                controlColor.style &&  (controlColor.style.backgroundColor ='');
-                   node.style.backgroundColor ='rgba(182, 155, 177, 0.603)';
-                   controlColorItem.current = node;
-               }
-    
+            if (node.id !== controlColor.id) {
+                controlColor.style && (controlColor.style.backgroundColor = '');
+                node.style.backgroundColor = 'rgba(182, 155, 177, 0.603)';
+                controlColorItem.current = node;
+            }
+
         }
 
 
+    }
+
+    //CONTEXMENU    
+    const handleContexMenu=(e:MouseEvent)=>{
+        const target = e.target as HTMLElement;
+        if(target.matches('span')) return;
+        const id=target.id;
+        handlePreventContexMenu(id,e.clientX,e.clientY);
     }
 
     /// ITEM OPEN
@@ -256,123 +267,138 @@ export const ContainerList = () => {
     const handleItemOpen = (e: MouseEvent) => {
         const target = e.target as HTMLElement;
         const controlColor = controlColorItem.current as HTMLElement;
-        
-        if(target.matches('p') && target.id !== controlColor.id){
-         controlColor.style &&  (controlColor.style.backgroundColor ='');
-            target.style.backgroundColor ='rgba(182, 155, 177, 0.603)';
-            controlColorItem.current = target;
-        }
-
-        
-        if (!target.matches('p')) return;
-        const parentNode = target.parentNode as HTMLElement;
-       
-        if (target.className === 'items_file') {
-            // dispatch para abrir el documento
-        dispatchOpendTextarea_true()
+        if (target.matches('span')) {
+            const span = target.dataset.id;
+            if (!span) return;
             
-
-
-            const name = addLoading(target, 'add_loading');
-
-            const data = {
-                uid: parentNode.id,
-                token: localStorage.getItem('token') && localStorage.getItem('token')
+            const p = document.getElementById(span) as HTMLParamElement;
+            handlePreventContexMenu(p.id,e.clientX,e.clientY)
+            
+            
+            
+        } else {
+            
+            
+            if (target.matches('p') && target.id !== controlColor.id) {
+                controlColor.style && (controlColor.style.color = '');
+            
+                target.style.color = 'red';
+                controlColorItem.current = target;
             }
             
-            const respuesta = notes.setnotesList.find(da => da?.user === parentNode.id);
+            
+            if (!target.matches('p')) return;
+            const parentNode = target.parentNode as HTMLElement;
 
-            if (!respuesta) {
-                              
-                if (online.current) {
-                    online.current = false
-                    DispatchTextarea_get(data,authLogin.demo)
-                        .then(resp => {
-                           
-                            getDispatch_notesTextarea(resp.note);
-                            setDispatch_notesTextarea(resp.note);
-                            setDispatch_uidItemList( parentNode.id);
+            if (target.className === 'items_file') {
+                // dispatch para abrir el documento
+                dispatchOpendTextarea_true()
 
-                            document.querySelector('.' + name)?.remove()
-                            dispatchOpendTextarea_true()
-                            online.current = true;
-                        })
-                        .catch(console.log)
+
+
+                const name = addLoading(target, 'add_loading');
+
+                const data = {
+                    uid: parentNode.id,
+                    token: localStorage.getItem('token') && localStorage.getItem('token')
                 }
-            } else {
 
-                getDispatch_notesTextarea(respuesta);
-                setDispatch_uidItemList( parentNode.id);
-                document.querySelector('.' + name)?.remove()
+                const respuesta = notes.setnotesList.find(da => da?.user === parentNode.id);
+
+                if (!respuesta) {
+
+                    if (online.current) {
+                        online.current = false
+                        DispatchTextarea_get(data, authLogin.demo)
+                            .then(resp => {
+
+                                getDispatch_notesTextarea({...resp.note,name:target.textContent});
+                                setDispatch_notesTextarea(resp.note);
+                                setDispatch_uidItemList(parentNode.id);
+
+                                document.querySelector('.' + name)?.remove()
+                                dispatchOpendTextarea_true()
+                                online.current = true;
+                            })
+                            .catch(console.log)
+                    }
+                } else {
+
+                    getDispatch_notesTextarea({...respuesta,name:target.textContent!});
+                    setDispatch_uidItemList(parentNode.id);
+                    document.querySelector('.' + name)?.remove()
+
+                }
 
             }
 
-        }
+            // ABRIR CARPETAS
+            if (parentNode.lastChild?.nodeName === 'DIV') {
+                openItemsAndOcult(parentNode, 'none', 'block')
 
-        // ABRIR CARPETAS
-        if (parentNode.lastChild?.nodeName === 'DIV') {
-            openItemsAndOcult(parentNode,'none','block')
+            } // ABTENER DATOS DB
+            else {
 
-        } // ABTENER DATOS DB
-        else {
-            
-             const spam = parentNode.querySelector('span') as HTMLSpanElement;
-             spam && (spam.style.transform = 'rotate(90deg)');
-             const name = addLoading(target, 'add_loading');
-             getItems_child(parentNode,name,'item')
+                const spam = parentNode.querySelector('.flecha') as HTMLSpanElement;
+                spam && (spam.style.transform = 'rotate(90deg)');
+                const name = addLoading(target, 'add_loading');
+                getItems_child(parentNode, name, 'item')
+            }
         }
     }
 
     useEffect(() => {
-        const auth={...authLogin}
+        const auth = { ...authLogin }
         const data = {
             uid: auth.uid,
             token: localStorage.getItem('token') && localStorage.getItem('token'),
         }
-        if(!controlgetItems.current){
- 
-            DispatchNotes_get(data,auth.demo)
-            .then(resp => {
-             
-                if (!resp) return
-                setlistasDeItems([...resp.list]);
-                controlgetItems.current=true;
-               
-                if(resp.list.length > 0){
-                    setsmgAdvertencia('')
-         
-                }
-            })
-            .catch(()=>{
-                setsmgAdvertencia('no se pudo abtener los archivos ó aun no se an creado')
-            })
+        if (!controlgetItems.current) {
+
+            DispatchNotes_get(data, auth.demo)
+                .then(resp => {
+
+                    if (!resp) return
+                    setlistasDeItems([...resp.list]);
+                    controlgetItems.current = true;
+
+                    if (resp.list.length > 0) {
+                        setsmgAdvertencia('')
+
+                    }
+                })
+                .catch(() => {
+                    setsmgAdvertencia('no se pudo abtener los archivos ó aun no se an creado')
+                })
         }
 
     }, [authLogin]);
 
 
     useLayoutEffect(() => {
-        if(alertas>0){
+        if (alertas > 0) {
             const node = document.querySelector('.container_items');;
             const child = node?.lastChild as HTMLElement;
-      
+
             const controlColor = controlColorItem.current as HTMLElement;
-        
-            if( child.id !== controlColor.id){
-             controlColor.style &&  (controlColor.style.backgroundColor ='');
-                child.style.backgroundColor ='rgba(182, 155, 177, 0.603)';
+
+            if (child.id !== controlColor.id) {
+                controlColor.style && (controlColor.style.backgroundColor = '');
+                child.style.backgroundColor = 'rgba(182, 155, 177, 0.603)';
                 controlColorItem.current = child;
             }
-           
+
         }
     }, [alertas]);
 
 
     return (
+        <>
+
         <div className="container_list" id="container_list" >
             <div className="cotainer_option_list" id="cotainer_option_list" >
-                <button>filter</button>
-                <button>search</button>
+                {/* <button>filter</button>
+                <button>search</button> */}
                 <button className="add_folder" id="add_folder" onClick={handleActiveAdd_FOLDER} >+</button>
 
             </div>
@@ -387,36 +413,38 @@ export const ContainerList = () => {
                 {
                     listasDeItems.map((resp, i) => (
                         <div className="items" key={i}
-                            id={resp._id}
-                            onContextMenu={handlePreventContexMenu}
-                            tabIndex={-1}
+                        id={resp._id}
+                        onContextMenu={handleContexMenu}
+                        tabIndex={-1}
                         >
+                            <span className="puntos" data-id={resp.id}>::: </span>
+                            <span className="flecha" >{'>'}</span>
                             <img src="./img/folder2.png" alt="plop" />
-                            <span>{'>'}</span>
+
                             <p className={'items_' + resp.type} id={resp.id}
                             >
 
                                 {resp.value}
+                           
                             </p>
                         </div>
                     ))
                 }
-                    {smgAdvertencia && <p style={{
-                        padding:'5px'
-                    }}>{smgAdvertencia}</p> }
+                {smgAdvertencia && <p style={{
+                    padding: '5px'
+                }}>{smgAdvertencia}</p>}
 
             </div>
-
 
             <aside className="itemsMenu" ref={menuItems}
                 tabIndex={-1}
                 style={{
                     top: positons.top,
                     left: positons.left,
-
+                    
                 }}
                 onClick={handleClickItems}
-            >
+                >
                 <p data-nameitem='file' >add file</p>
                 <p data-nameitem='folder'>add folder</p>
                 <p data-nameitem='renombrar'>renombrar</p>
@@ -427,6 +455,8 @@ export const ContainerList = () => {
             {/* REMOMBRAR LOS ITEMS */}
             <form id="items_renomber" style={{ display: 'none' }} ></form>
             <input type="submit" form="items_renomber" style={{ display: 'none' }} />
+            
         </div>
+                </>
     )
 }

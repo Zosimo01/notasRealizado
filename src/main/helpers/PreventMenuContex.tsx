@@ -1,4 +1,5 @@
-import {  MouseEvent, RefObject,useEffect, useRef, useState } from "react";
+import { RefObject,useEffect, useRef, useState } from "react";
+import { getValueAllStyle } from "./getValueAll";
 
 
 interface Props {
@@ -8,16 +9,17 @@ interface Props {
 
 
 export const PreventMenuContex = ({ menuItems, setDispatch_uidContex }: Props) => {
-
+  
   let htmlElement_id = useRef('')
   const [positons, setpositons] = useState({ top: '0', left: '0' });
 
-  const handlePreventContexMenu = (e: MouseEvent) => {
-
-    const target = e.target as HTMLDivElement;
-    if(target.className==='items') return;
-    const parentNode=target.parentNode as HTMLElement;
+  const handlePreventContexMenu = (e: string,x:any,y:any) => {
     
+    const target = document.getElementById(e) as HTMLElement
+    
+    if(target.className==='items' || target.matches('span')) return;
+    const parentNode=target.parentNode as HTMLElement;
+     
     setDispatch_uidContex(parentNode.id)
     htmlElement_id.current=target.id;
 
@@ -42,8 +44,11 @@ export const PreventMenuContex = ({ menuItems, setDispatch_uidContex }: Props) =
     elementMenu.style.display = 'none';
     }
 
-    const X = e.clientX;
-    const Y = e.clientY;
+    const h1=document.querySelector('.container_title')?.querySelector('h1') as HTMLElement;
+    const display = getValueAllStyle(h1,'display');
+    const X = display.elementValue==='none' ? (x-100) : x;
+    const Y = y;
+
 
 
     const { left, top } = elementDos.getBoundingClientRect();
@@ -52,7 +57,7 @@ export const PreventMenuContex = ({ menuItems, setDispatch_uidContex }: Props) =
     (Y + 200>= windowheight)
       ? setpositons(
         {
-          left: (X - left) + 'px',
+          left: ( X - left) + 'px',
           top: (Y - top - elementMenu.offsetHeight) + 'px'
         })
       : setpositons({ left: (X - left) + 'px', top: (Y - top) + 'px' });

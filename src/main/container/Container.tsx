@@ -1,78 +1,103 @@
 
 import { MouseEvent, useContext } from "react";
+import { animationFunction } from "../../animation/animation";
 
 import { Contex } from "../contexts/AuthContex";
 import { NotesContex } from "../contexts/NoteContex";
+import { getValueAllStyle } from "../helpers/getValueAll";
 import { ContainerBody } from "./ContainerBody";
 import { ContainerList } from "./ContainerList";
 
-interface Props{
-  name:string,
-  demo:string,
-  ok:boolean,
-  uid:string,
-  value:string
+interface Props {
+  name: string,
+  demo: string,
+  ok: boolean,
+  uid: string,
+  value: string
 }
 
-export const Container = (data:Props) => {
+export const Container = (data: Props) => {
 
-  const {dispatchLogin,dispatchToken} = useContext(Contex);
-  const {getDispatch_notesTextarea} = useContext(NotesContex);
+  const { dispatchLogin, dispatchToken } = useContext(Contex);
+  const { getDispatch_notesTextarea } = useContext(NotesContex);
 
-  const handleLogOut =()=>{
+  const handleLogOut = () => {
     localStorage.removeItem('token');
-    dispatchToken({name:'',ok:false,uid:'',demo:'',value:''});
+    dispatchToken({ name: '', ok: false, uid: '', demo: '', value: '' });
     getDispatch_notesTextarea({
       _id: '',
       value: '',
       type: '',
       user: '',
-      data:'',
-      RowsNumb:2
+      data: '',
+      RowsNumb: 2,
+      name:''
     })
     dispatchLogin(false);
-  } 
-
-const handleShowItems=(e:MouseEvent)=>{
-  const node = document.querySelector('#container_list') as HTMLElement;
- 
-  if(node.style.display==='block'){
-    node.style.display ='none';
-  
-  }else{
-    node.style.display ='block'
-  
   }
-}
+
+  const handleShowItems = (e: MouseEvent) => {
+    const node = document.querySelector('#container_list') as HTMLElement;
+    const display = getValueAllStyle(node,'display');
+    const {elementValue} = getValueAllStyle(node,'width');
+
+    const data:any = {
+      node,
+       options:{duration:500},
+  
+    }
+    if (display.elementValue === 'none') {
+      node.style.display = 'block';
+      const animation =[
+        {position:'absolute',zIndex:'100',height:'100%', left:`-${elementValue}`},
+        {position:'absolute',zIndex:'100',height:'100%',left:'0'}
+      ]
+      data.animation=animation;
+     animationFunction(data)
+
+    } else {
+      const animation =[
+        {position:'absolute',zIndex:'100',height:'100%', left:'0'},
+        {position:'absolute',zIndex:'100',height:'100%',left:`-${elementValue}`}
+      ]
+      data.animation=animation;
+
+     const finish = animationFunction(data)
+     finish.then(()=>{
+       node.style.display = 'none';
+    })
+    }
+  }
 
   return (
     <div className="container" >
       <div className="container_note" >
         <div className="container_title" id="container_title">
-          <button style={{
-            position:'absolute',
-            left:0,
-            padding:'5px',
-            fontSize:'20px',
-            borderRadius:'10px',
-            backgroundColor:'orange'
-          }} onClick={handleLogOut} >log out </button>
-          <h1>wrinting your notes</h1>
+          <div className="log_and_menu" >
+
+          <button className="menu_itemButtom"
+            onClick={handleShowItems}
+            ><img src="img/menugreen.png" alt="menu" /></button>
+          <button onClick={handleLogOut} >log out </button>
+
+            </div>
+          <h1>{data.value}</h1>
         </div>
         <div className="contaienr_cuerpo" >
 
+
           <ContainerList />
+          <div className="risize_container" >
+            <img src="img/flechahorizontal.png" alt="flecha" />
+            {/* <p>{'<-->'}</p> */}
+            </div>
+
           <ContainerBody />
-          {/* {
-            notes.openModal &&
-            <Modals />
-          } */}
+          
+
         </div>
-        <div className="container_title" >
-          <button className="menu_itemButtom"
-          onClick={handleShowItems}
-          >menu</button>
-          <h1>welcomo {data.value}</h1>
+        <div className="container_title01" >
+          <h1>writing your note!</h1>
         </div>
       </div>
     </div>

@@ -10,11 +10,12 @@
 
 }
 
-.container_title{
+.container_title, .container_title01{
     text-align: center;
     position: relative;
     padding-bottom: 6px;
     color: aliceblue;
+    height: 40px;
 }
 
 .menu_body{
@@ -46,7 +47,7 @@
     display: flex;
     position: relative;
     height: 100%;
-    overflow: auto;
+    overflow: hidden;
 
 }
 
@@ -65,71 +66,108 @@
     }
 }
 
+.log_and_menu{
+    display: flex;
+    position: absolute;
+}
+.log_and_menu button:last-child{
+    border-radius: 20px;
+    background-color: aquamarine;
+    margin: 0 5px;
+    font-size: large;
+    padding: 5px 5px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    cursor: pointer;
+}
+
 //CONTAINER LIST
 
-.container_list{
+
+
+ .container_list{
+    box-sizing: border-box;
+    display: block;
     width: 210px;
     min-width: 200px;
     max-width: 800px;
-    overflow-y: auto;
+    // overflow: auto;
     resize: horizontal;
     scroll-behavior: smooth;
     padding-bottom: 10px;
-    background-color: antiquewhite;
-  padding: 1px;
+    background-color: rgb(197, 209, 206);
+    padding: 1px;
+    // background-color: rgba(0, 0, 0, 0);
+    // animation: ocultar 2s ease .5s 1 forwards ;
+
+    overflow: hidden;
+    padding-top: 25px;
 }
-.container_list :focus{
-    border: solid red;
-    background-color: red;
+
+.risize_container{
+    position: relative;
+    width: 2px;
+    bottom: 0;
 }
+
+.risize_container img{
+    position: absolute;
+    color: red;
+    z-index: 999;
+    background-color: white;
+    bottom: -5px;
+    left: -25px;
+    height: 25px;
+    width: 30px;
+    border-radius: 50px;
+}
+
+
+@keyframes ocultar {
+    0%{
+        position: relative;
+        left: 0;
+    }
+    
+    
+    100%{ 
+        position: relative;
+        left: 100px;
+}
+}
+
+.menu_itemButtom{
+    border:none;
+    border-radius: 50%;
+    width: 35px;
+    height:35px;
+}
+.menu_itemButtom img{
+    width: 100%;
+}
+
+
 @media screen and(max-width:750px) {
 
+    .container_title h1{
+        display: none;
+    }
     .container_list{
         display: none;
-        position: fixed;
-        top: 1%;
+        position: absolute;
         overflow-x: hidden;
-        height: 97%;
-        z-index: 100;
-        max-width: 80%;
+        height: 100%;
+        z-index: 101;
+        max-width: 90%;
         
     }
 }
 
-.menu_itemButtom{
-    position: absolute;
-    right: 0;
-    z-index: 101;
-}
-.menu_itemButtom:focus{
-    background-color: aquamarine;
-}
-// ESTILOS DE ESCROLLL
-.container_list::-webkit-scrollbar{
-    width: 8px;     /* Tamaño del scroll en vertical */
-    height: 8px;    /* Tamaño del scroll en horizontal */
-    // display: none;  /* Ocultar scroll */
-}
 
-.container_list::-webkit-scrollbar-thumb {
-    background: rgb(139, 9, 9);
-    border-radius: 4px;
-}
-
-.container_list::-webkit-scrollbar-thumb:hover {
-    background: #dd1414;
-    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
-}
-
-/* Cambiamos el fondo cuando esté en active */
-.container_list::-webkit-scrollbar-thumb:active {
-    background-color: #ce1010;
-}
-///////7
 
 .cotainer_option_list{
+    width: 200px;
     background-color: aquamarine;
-    position:sticky;
+    position:absolute;
     top: 0;
     max-width: 210px;
     z-index: 1;
@@ -148,55 +186,109 @@
     float: right;
     font-size: 20px;
     width: 100%;
-    // overflow-wrap: hidden;
+    // padding-top: 25px;
+    
+    height: 100%;
+    overflow: auto;
+}
+// ESTILOS DE ESCROLLL
+.container_items::-webkit-scrollbar{
+    width: 8px;     /* Tamaño del scroll en vertical */
+    height: 8px;    /* Tamaño del scroll en horizontal */
+    // display: none;  /* Ocultar scroll */
 }
 
+.container_items::-webkit-scrollbar-thumb {
+    background: rgb(139, 9, 9);
+    border-radius: 4px;
+}
+
+.container_items::-webkit-scrollbar-thumb:hover {
+    background: #dd1414;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Cambiamos el fondo cuando esté en active */
+.container_items::-webkit-scrollbar-thumb:active {
+    background-color: #ce1010;
+}
+///////7
+.icons{
+    width: 50px;
+    // height: 100px;
+    background-color: aquamarine;
+}
+
+.pruebas_items{
+    width: 30px;
+    background: gray;
+}
 
 .items{
-
+    position: relative;
     margin-top: 10px;
     margin-left: 5px;
     height: auto;
-    overflow: hidden;
+    // overflow: hidden;
     display: block;
     border-left: 1px solid rgba(135, 139, 125, 0.459);
+    border-color: red;
     border-left-style: dashed;
+    min-width: 100px;
 }
 
 .items p{
-   
+    
     border-bottom: 2px red;
   
     color: rgb(11, 24, 97);
     cursor:pointer;
     width:auto;
     white-space: nowrap;
-    padding: 0px 10px 0px 0px;
     // text-align: justify;
     text-overflow: ellipsis;
-    overflow: hidden;
+    // overflow: hidden;
     // hyphens: auto;
     font-size: smaller;
     height: 20px;
-    padding-left: 5px;
+    padding-left: 27px;
+    padding-top: 2px;
+    padding-bottom: 5px;
+    font-weight: bold;
 }
-.items  span{
 
-    float: right;
-    margin-right: 5px;
-    transform: rotate(0deg);
+.items .puntos{
+    transform: rotate(90deg);
+    color: green;
+    cursor: pointer;
+   float: left;
+}
 
+.puntos:hover{
+    color: whitesmoke
+    
 }
 
 .items p:hover{
     color: rgb(207, 70, 28);
-    font-weight: bold;
+
 }
 
-.items img{
+.items img, .items span{
     width: 15px;
     float: left;
-    margin:3px 0 0 3px;
+    overflow: hidden;
+
+    margin:0px 0 0 3px;
+}
+
+.items .flecha{
+    color: white;
+}
+.items img{
+    float: left;
+    margin-top: 5px;
+    margin-right: 5px;
 }
 
 .inputAddFolder{
@@ -213,8 +305,8 @@
 
 .itemsMenu{
     display: none;
-    z-index: 100;
     position: absolute;
+    z-index: 102;
     background-color: blue;
     color: white;
     top: 0;
@@ -230,9 +322,6 @@
     background-color: aqua;
 }
 
-.renombrar{
-    position: absolute;
-}
 // element add file and folder
 
 #inputForAdd_FILI_FOLDER{
@@ -298,6 +387,15 @@
     height: 100%;
     overflow: hidden;
 }
+
+.apuntes .namefolder{
+    position: absolute;
+    padding: 0px 10px;
+    font-size: small;
+    font-family:'Times New Roman', Times, serif;
+    color: red;
+}
+
 .apuntes textarea{
     outline: none;
     width: 100%;
@@ -306,7 +404,7 @@
     background-color: rgb(22, 16, 16);
     max-width: 100%;
     min-width: 300px;
-    padding: 10px 5px;
+    padding: 15px 5px 5px 5px;
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
     vertical-align: baseline;

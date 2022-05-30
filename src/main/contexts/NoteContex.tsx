@@ -7,7 +7,8 @@ interface NotesContexProps {
     getDispatch_notesTextarea: (payload: TextareaListProps) => void,
     getDispatch_uidDelete:(payload:[])=>void;
     setDispatch_uidContex:(uidContex:string)=>void,
-    setDispatch_uidItemList:(uidItem:string)=>void
+    setDispatch_uidItemList:(uidItem:string)=>void,
+    setDispatch_numItem:(payload:string)=>void
 };
 
 const initiState: NotesProps = {
@@ -19,11 +20,13 @@ const initiState: NotesProps = {
         type: '',
         user: '',
         data:'',
-        RowsNumb:2
+        RowsNumb:2,
+        name:''
     },
     uidItem:'',
     uidDeletes:[],
-    uidContexItem:''
+    uidContexItem:'',
+    numItems:[]
 }
 
 export const NotesContex = createContext({} as NotesContexProps);
@@ -51,6 +54,10 @@ export const NoteContex = ({ children }: any) => {
     const setDispatch_uidContex=(uidContex:string)=>{
         dispatch({type:'uid contexItem [true]',uidContex})
     }
+
+    const setDispatch_numItem=(payload:string)=>{
+        dispatch({type:'numitems[true]',payload})
+    }
     return (
         <NotesContex.Provider
             value={{
@@ -59,7 +66,8 @@ export const NoteContex = ({ children }: any) => {
                 getDispatch_notesTextarea,
                 getDispatch_uidDelete,
                 setDispatch_uidContex,
-                setDispatch_uidItemList
+                setDispatch_uidItemList,
+                setDispatch_numItem
             }}
         >
             {children}

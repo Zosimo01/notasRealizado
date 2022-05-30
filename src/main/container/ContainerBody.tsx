@@ -1,11 +1,14 @@
 import { MouseEvent, useContext, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { animationFunction } from "../../animation/animation";
 
 import { ButtonBody } from "../components/ButtonBody";
 import { Contex } from "../contexts/AuthContex";
 
 import { NotesContex } from "../contexts/NoteContex";
 import { DispatchTextarea_create } from "../dispatch/DispatchNotes";
+import { addLoading } from "../helpers/AnimationLoading";
+import { getValueAllStyle } from "../helpers/getValueAll";
 import { useTextarea } from "../hooks/useTextarea";
 
 type NameButton = | 'guardar' | 'editar';
@@ -56,6 +59,8 @@ export const ContainerBody = () => {
                 return resp
             })
 
+         const rest =addLoading(element,'add_loading',false)
+
             DispatchTextarea_create({
                 uid: uidItem,
                 _id: getnoteList!._id,
@@ -67,6 +72,9 @@ export const ContainerBody = () => {
                     RowsNumb: value.RowsNumb
                 }
             }, authLogin.demo).then(() => {
+                const textarea = Element_textarea.current as HTMLTextAreaElement;
+                textarea.disabled = true;
+                document.querySelector('.'+rest)?.remove();
                 const node = document.getElementById('button_editables')?.querySelector('p') as HTMLParagraphElement;
                 node.textContent = 'ok!'
                 node.style.animationName = 'animate';
@@ -74,6 +82,7 @@ export const ContainerBody = () => {
                     node.style.animationName = '';
                 }, 1500);
             }).catch(() => {
+                document.querySelector('.'+rest)?.remove();
                 const node = document.getElementById('button_editables')?.querySelector('p') as HTMLParagraphElement;
                 node.textContent = 'error'
                 node.style.animationName = 'animate'
@@ -104,10 +113,25 @@ export const ContainerBody = () => {
 
     const handleOcultItems = () => {
         const node = document.querySelector('#container_list') as HTMLElement;
+        const huno= document.querySelector('.container_title')?.querySelector('h1') as HTMLElement;
+        const value = getValueAllStyle(huno,'display');
+    const {elementValue} = getValueAllStyle(node,'width');
 
+        if(value.elementValue==='block') return;
         if (node.style.display === 'block') {
-            node.style.display = 'none';
-
+            const data:any = {
+                node,
+                 options:{duration:500},
+                animation:[
+                {position:'absolute',zIndex:'100',height:'100%', left:'0'},
+                {position:'absolute',zIndex:'100',height:'100%',left:`-${elementValue}`}
+              ]
+              }
+        
+             const finish = animationFunction(data)
+             finish.then(()=>{
+               node.style.display = 'none';
+            })
         } 
     }
 
@@ -119,11 +143,8 @@ export const ContainerBody = () => {
         } else {
             const element = Element_textarea.current as HTMLTextAreaElement;
             if (element) {
-                if (!getnoteList.value) {
-                    element.disabled = false;
-                    element.focus();
-
-                } else {
+                if (getnoteList.value) 
+               {
                     element.disabled = true;
                 }
             };
@@ -165,18 +186,21 @@ export const ContainerBody = () => {
 
 
                 <div className="apuntes" onClick={handleOcultItems} >
+                  {
+                      getnoteList?.name &&  <p className="namefolder" >/ {getnoteList?.name}</p>
+                  }  
                     {
                         obrirTarea
                             ? (<> <textarea name={'value'} id={value._id}
                                 cols={25} readOnly={false}
-
+                                    disabled
                                 ref={Element_textarea}
 
                                 spellCheck={false}
                                 onChange={handleChange}
                                 onClick={handleClick}
                                 value={value.value}
-                                placeholder='crea su nueva nota!!!!!!!!'
+                                placeholder='PARA COMENZAR PRESIONE EDITAR!'
 
                             >
 

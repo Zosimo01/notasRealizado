@@ -104,14 +104,12 @@ export const RenombrarItems = (htmlElement_id:string,demo:string) => {
   nodes.innerHTML=input;
   const inputNeto = nodes.querySelector('input') as HTMLInputElement;
   inputNeto.value=txt;
-  // inputNeto.style.position='sticky';
-  inputNeto.style.position='absolute';
-  // inputNeto.style.height='20px'
+
   
   
   inputNeto.select();
   inputNeto.onblur=function(){
-    // inputNeto.scroll({left:0})
+  
     const valid= /\w/;
     const valor =inputNeto.value;
     if(valid.test(valor)){

@@ -41,11 +41,16 @@ export const CreateItems =({parentNode,type,id,value,_id,margin}:PropsItems)=>{
     const element = `<div class="items" id=${_id}
      style="margin-left:${margin}px;
      width='100%'; ">
+
+      <span class="puntos" data-id=${id}>:::</span>
+     
+     ${type==='folder' ?'<span class="flecha" >></span>':''} 
+     
      <img src=${type==='folder' ? icon[0]:icon[1]} />
-      ${type==='folder' ?'<span>></span>':''}
      
      <p id=${id} class="items_${type}" >
-     ${value}</p>
+     ${value}
+     </p>
      </div>` ;
      
     nodeFather.insertAdjacentHTML('beforeend',element);

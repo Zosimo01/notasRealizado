@@ -8,14 +8,21 @@ export const AnimationLoading = () => {
   )
 }
 
-export const addLoading =(node:any,nameLoadig:any)=>{
+export const addLoading =(node:any,nameLoadig:any,pso=true)=>{
     const loading =document.querySelector('.'+nameLoadig) as HTMLElement;
     if(!loading){
       const element = document.createElement('div');
       element.className='add_loading';
       element.style.float='right'
       element.style.width='12px'
-      element.style.height='12px'
+      element.style.height='12px';
+      if(!pso){
+
+        element.style.position='absolute'
+        element.style.top='0';
+        element.style.bottom='0';
+        
+      }
       
       node.appendChild(element);
     }
@@ -36,7 +43,7 @@ export const openItemsAndOcult =(node:HTMLElement,none:string,block:string)=>{
   for (let i in numChildren) {
     const child = children[i] as HTMLElement;
     if (child.nodeName === 'DIV' && child.className === 'items') {
-          const spam = node.querySelector('span') as HTMLSpanElement;
+          const spam = node.querySelector('.flecha') as HTMLSpanElement;
           
           if (child.style.display ===none) {
               child.style.display = block;

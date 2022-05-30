@@ -6,7 +6,8 @@ export interface TextareaListProps {
     user:string,
     type:string,
     _id:string,
-    RowsNumb:number
+    RowsNumb:number,
+    name:string
 }   
 
 
@@ -15,7 +16,8 @@ export interface NotesProps {
     getnoteList:TextareaListProps | undefined,
     uidItem:string,
     uidDeletes:[],
-    uidContexItem:string
+    uidContexItem:string,
+    numItems:string[]
 }
 
 type Props =
@@ -24,6 +26,7 @@ type Props =
     | {type:'uid itemList [true]', uidItem:string}
     | {type:'uid delete [true]' , payload:[]}
     | {type:'uid contexItem [true]' , uidContex:string}
+    | {type:'numitems[true]' ,payload:string}
 
 
 
@@ -53,6 +56,11 @@ export const NotesReducer = (state: NotesProps, action: Props): NotesProps => {
             return{
                 ...state,
                 uidContexItem:action.uidContex
+            }
+        case 'numitems[true]':
+            return{
+                ...state,
+                numItems:[...state.numItems,action.payload]
             }
         default: return state
     }
