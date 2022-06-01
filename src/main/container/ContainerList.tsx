@@ -25,7 +25,8 @@ export const ContainerList = () => {
     const uid_htmlElement = useRef('');
     const typeItemFor_ADD = useRef('');
     const controlgetItems = useRef(false);
-    const controlColorItem = useRef<HTMLElement>({} as HTMLElement)
+    const controlColorItem = useRef<HTMLElement>({} as HTMLElement);
+    const controlColorItemColor = useRef<HTMLElement>({} as HTMLElement);
     const online = useRef(true);
 
     const [alertas, setalertas] = useState(0)
@@ -242,11 +243,16 @@ export const ContainerList = () => {
             dispatchLoading_false();
             const node = document.getElementById(_id) as HTMLElement;
             const controlColor = controlColorItem.current as HTMLElement;
+            const controlColorColor = controlColorItemColor.current as HTMLElement;
 
             if (node.id !== controlColor.id) {
                 controlColor.style && (controlColor.style.backgroundColor = '');
                 node.style.backgroundColor = 'rgba(182, 155, 177, 0.603)';
                 controlColorItem.current = node;
+
+                controlColorColor.style && (controlColorColor.style.color = '');
+                node.style.color = 'red';
+                controlColorItemColor.current = node;
             }
 
         }
@@ -267,6 +273,7 @@ export const ContainerList = () => {
     const handleItemOpen = (e: MouseEvent) => {
         const target = e.target as HTMLElement;
         const controlColor = controlColorItem.current as HTMLElement;
+        const controlColorColor = controlColorItemColor.current as HTMLElement;
         if (target.matches('span')) {
             const span = target.dataset.id;
             if (!span) return;
@@ -280,10 +287,14 @@ export const ContainerList = () => {
             
             
             if (target.matches('p') && target.id !== controlColor.id) {
-                controlColor.style && (controlColor.style.color = '');
+                controlColor.style && (controlColor.style.backgroundColor = '');
             
-                target.style.color = 'red';
+                // target.style.backgroundColor = 'rgba(182, 155, 177, 0.603)';
                 controlColorItem.current = target;
+
+                controlColorColor.style && (controlColorColor.style.color = '');
+                target.style.color = 'red';
+                controlColorItemColor.current = target;
             }
             
             

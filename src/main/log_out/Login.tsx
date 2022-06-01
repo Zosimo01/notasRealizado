@@ -27,8 +27,8 @@ export const Login = ({ handleLogout }: Props) => {
   const { dispatchLogin, dispatchToken } = useContext(Contex);
 
   const { data, handleChange } = useForm({
-    email: 'tobby@gmail.com',
-    password: '123456',
+    email: '',
+    password: '',
     demo: 'guardar', codigo: '',
     nueva_contraseña: '',
     repita_contraseña: ''
@@ -183,6 +183,7 @@ export const Login = ({ handleLogout }: Props) => {
         <label htmlFor="email">{values.name1}: </label>
         <input type={!values.modal ? "email" : 'password'} name={values.name1} id="email"
           autoComplete="off"
+          spellCheck={false}
           onChange={handleChange}
           value={!values.modal ? data.email : data.nueva_contraseña}
         />

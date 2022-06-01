@@ -17,7 +17,9 @@
     color: aliceblue;
     height: 40px;
 }
-
+.container_title h1{
+    font-family:monospace;
+}
 .menu_body{
 
     width: 50px;
@@ -70,14 +72,20 @@
     display: flex;
     position: absolute;
 }
+.log_and_menu button:first-child{
+    border: solid rgb(7, 221, 221);
+}
 .log_and_menu button:last-child{
     border-radius: 20px;
-    background-color: aquamarine;
+    border: solid rgb(8, 138, 138);
+    background-color: rgb(77, 216, 221);
     margin: 0 5px;
     font-size: large;
     padding: 5px 5px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     cursor: pointer;
+    color: rgba(107, 37, 9, 0.993);
+    margin-left: 50px;
 }
 
 //CONTAINER LIST
@@ -160,13 +168,13 @@
         max-width: 90%;
         
     }
+
 }
 
 
 
 .cotainer_option_list{
     width: 200px;
-    background-color: aquamarine;
     position:absolute;
     top: 0;
     max-width: 210px;
@@ -177,9 +185,11 @@
     margin: auto;
 }
 .cotainer_option_list .add_folder{
-    background-color: rgba(105, 99, 99, 0.644);
-    width: 100%;
+    background-color: rgba(18, 198, 204, 0.644);
+    border-radius: 2pc;
     font-size: x-large;
+    border:solid rgb(6, 146, 146);
+    width: 100%;
 }
 
 .container_items{
@@ -299,15 +309,12 @@
         display: none;
 }
 
-.pruebas:focus{
-    background-color: red;
-}
 
 .itemsMenu{
     display: none;
     position: absolute;
     z-index: 102;
-    background-color: blue;
+    background-color: rgb(58, 116, 131);
     color: white;
     top: 0;
     left: 0;
@@ -321,7 +328,9 @@
 .itemsMenu p:active{
     background-color: aqua;
 }
-
+.itemsMenu p:hover{
+    background-color: rgb(49, 134, 134);
+}
 // element add file and folder
 
 #inputForAdd_FILI_FOLDER{
@@ -348,12 +357,19 @@
 }
 
 .button_editables{
-    background-color: rgb(63, 34, 6);
-    // height:100px;
-    top: 0;
+    border-radius: 20px;
+    background-color: rgb(146, 133, 121);
+    padding: 2px;
+    top: -3px;
     right: 0;
-    position: absolute;
- 
+    position: absolute; 
+}
+
+.button_editables button{
+    color: orange;
+    border-radius: 7px;
+    border:solid rgb(61, 4, 4);
+    background-color: rgb(61, 4, 4);
 }
 
 .button_editables p{

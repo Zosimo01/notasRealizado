@@ -4,17 +4,26 @@
     width: 100%;
     position: relative;
     overflow: hidden;
+    box-sizing: border-box;
+    
 }
 
 .rotate_title{
-    position: absolute;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+
+.rotate_title div{
     top: 50%;
     left: -10%;
     transform: rotate(45deg);
-    width: 100%;
 }
 
 .rotate_title .title_log_out{
+    padding-left: 10px;
+    color: rgb(248, 245, 245);
     display: block;
     font-family: monospace;
     border-right: solid;
@@ -22,12 +31,20 @@
     width: 19ch;
     font-size: 40px;
     overflow: hidden;
-    animation: typing 4s steps(19), animat .5s infinite step-end alternate;
+    animation: typing 3s steps(19) forwards , animat .5s infinite step-end alternate;
 }
 
 @keyframes typing {
-    from{
+    
+    0%{
         width: 0;
+        background-color: rgb(49, 223, 223);
+    }
+    100%{
+
+        width: 19ch;
+        background-color:rgba(2, 22, 1, 0.493);
+        display: none;
     }
 }
 
@@ -74,16 +91,22 @@
     right: 0;
     top: 30%;
 
+    padding-right: 10px;
 }
 
+.container_button div{
+    cursor: pointer;
+    background-color: rgba(35, 39, 25, 0.747);
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 a{
-    color:green
+    color:rgb(16, 233, 16)
 }
 
 .login , .logout{
     box-sizing: border-box;
 
-    background-color: rgba(47, 222, 235, 0.397);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -92,18 +115,10 @@ a{
     height: 100px;
     margin: 10px 0;
 }
-.login:hover{
-   border: 5px solid;
-    background-color: aqua;
-    color: black;
+.container_button div:hover{
+    background-color: rgba(172, 255, 47, 0.514);
+    color: green;
 }
-
-.logout:hover{
-    border: 5px solid;
-    background-color: aqua;
-    color: black;
-}
-
 .login:active{
     background-color: rgba(240, 248, 255, 0.247);
 }
@@ -115,33 +130,40 @@ a{
     width: 100%;
     text-align: center;
     text-align: center;
+    
 }
 
 //LOGIN
 
 .user_login{
+    color: white;
     margin: 5px;
     padding: 10px;
     display: flex;
-    border: solid;
+    background-color: rgba(18, 20, 20, 0.562);
     flex-direction: column;
     width: 100%;
 }
-
+.user_login label{
+    padding: 5px;
+}
 .user_login input{
     height: 30px;
     font-size: 18px;
     padding: 0 5px;
     outline: none;
     border: 0;
-    background-color: rgba(207, 69, 5, 0.603);
-    color: white;
+    background-color: rgba(224, 121, 72, 0.603);
+    color: rgb(246, 247, 248);
 }
 
 .user_botton button{
     margin: 20px;
     width: 100px;
     height: 30px;
+    background-color: aquamarine;
+    border: none;
+    color:rebeccapurple;
 }
 
 .user_botton p{
@@ -159,3 +181,50 @@ a{
  .a_login:active{
     color: red;
  }
+
+ ///LOADING 
+
+ 
+ .laoding_demo{
+     width: 100%;
+     height: 100%;
+     position: absolute;
+     left: 0;
+     display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+ }
+
+.laoding_inicio{
+    background-color: brown;
+    width: 200px;
+    padding: 5px;
+    box-shadow: rgb(126, 67, 12) 3px 3px 10px;
+}
+
+.laoding_inicio h1{
+    color:whitesmoke;
+    padding-left: 10px;
+}
+
+.laoding_inicio h1 span{
+    // color: blue;  
+    padding: 0;
+    position: relative;
+    top: 6px;
+    display:inline-block;
+    font-family: monospace;
+    white-space: nowrap;
+    width: 4ch;
+   
+    overflow: hidden;
+    animation: loadings 3s steps(4) infinite
+}
+
+@keyframes loadings {
+    
+    0%{
+        width: 0;
+    }
+}

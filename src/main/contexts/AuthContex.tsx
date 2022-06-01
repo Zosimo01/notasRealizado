@@ -7,14 +7,16 @@ export interface AuthLoginProps{
     name:string,
     uid:string,
     demo:string,
-    value:string
+    value:string,
 }
 
  interface AuthContexProps{
-    login:boolean
+    login:boolean,
+    loading:boolean,
     authLogin:AuthLoginProps,
     dispatchLogin:(login:boolean)=>void,
     dispatchToken : (payload:AuthLoginProps)=>void,
+    dispatchLoading:(loading:boolean)=>void
 }
 
 const initState:AuthLoginProps={
@@ -31,7 +33,8 @@ export const AuthProvider = ({children}:any) => {
 
     
     const [state, dispatch] = useReducer(AuthReducer, initState);
-    const [login, settoken] = useState(false)
+    const [login, settoken] = useState(false);
+    const [loading, setloading] = useState(false);
 
 
 
@@ -48,6 +51,10 @@ export const AuthProvider = ({children}:any) => {
         })
     }
 
+const dispatchLoading=(loading:boolean)=>{
+    setloading(loading)
+}
+
   return (
     <Contex.Provider 
         value={
@@ -55,7 +62,9 @@ export const AuthProvider = ({children}:any) => {
                 login,
                 authLogin:state ,
                 dispatchLogin,
-                dispatchToken
+                dispatchToken,
+                loading,
+                dispatchLoading
             }
         }
     >

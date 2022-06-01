@@ -1,6 +1,4 @@
 import { RefObject,useEffect, useRef, useState } from "react";
-import { getValueAllStyle } from "./getValueAll";
-
 
 interface Props {
   menuItems: RefObject<HTMLDivElement>,
@@ -44,9 +42,7 @@ export const PreventMenuContex = ({ menuItems, setDispatch_uidContex }: Props) =
     elementMenu.style.display = 'none';
     }
 
-    const h1=document.querySelector('.container_title')?.querySelector('h1') as HTMLElement;
-    const display = getValueAllStyle(h1,'display');
-    const X = display.elementValue==='none' ? (x-100) : x;
+    const X = x;
     const Y = y;
 
 
