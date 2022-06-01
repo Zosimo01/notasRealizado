@@ -7,7 +7,12 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div className="App" style={{
+      backgroundImage:'url(img/fondo.jpg)',
+      backgroundRepeat:'no-repeat',
+      backgroundSize:'cover',
+      backgroundPosition:'center'  
+      }} >
       <AuthContex>
         <Main />
       </AuthContex>
