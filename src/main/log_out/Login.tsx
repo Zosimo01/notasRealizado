@@ -114,9 +114,11 @@ export const Login = ({ handleLogout }: Props) => {
           email: data.email,
           codigo: cody
         }
+      
         node.disabled = true
         AuthDispatch_restaurarcontra(datas)
           .then(resp => {
+            console.log(resp)
             if (resp.ok) {
               setvalues({ ...values, inputCody: true, cody, smg: resp.smg });
               node.disabled = false;
@@ -238,7 +240,7 @@ export const Login = ({ handleLogout }: Props) => {
         </div>
         {
           values.inputCody &&
-          <input type="reset" value='salir!' onClick={() => window.location.reload()} />
+          <input type="reset" value='salir!' onClick={() => window.location.reload()} style={{backgroundColor:'Background',color:'red'}} />
         }
 
       </form>

@@ -30,7 +30,7 @@ export const ContainerBody = () => {
         notes: { getnoteList, uidItem, setnotesList, uidDeletes },
 
     } = useContext(NotesContex);;
-    const { authLogin } = useContext(Contex);
+    const { authLogin,loading } = useContext(Contex);
 
     const { value, handleChange, setcrontroles, setvalue } = useTextarea(frangNote, control);
 
@@ -181,6 +181,18 @@ export const ContainerBody = () => {
 
     return (
         <>
+             {
+                    loading && (
+                        <div className="laoding_demo">
+
+                        <div className="laoding_inicio" >
+                            <h1>
+                                cerrando seccion<span>...</span>
+                            </h1>
+                        </div>
+                        </div>
+                    )
+                }
 
             <div className="container_body" >
 

@@ -18,22 +18,26 @@ interface Props {
 
 export const Container = (data: Props) => {
 
-  const { dispatchLogin, dispatchToken } = useContext(Contex);
+  const { dispatchLogin, dispatchToken,dispatchLoading } = useContext(Contex);
   const { getDispatch_notesTextarea } = useContext(NotesContex);
 
   const handleLogOut = () => {
-    localStorage.removeItem('token');
-    dispatchToken({ name: '', ok: false, uid: '', demo: '', value: '' });
-    getDispatch_notesTextarea({
-      _id: '',
-      value: '',
-      type: '',
-      user: '',
-      data: '',
-      RowsNumb: 2,
-      name:''
-    })
-    dispatchLogin(false);
+    dispatchLoading(true)
+    setTimeout(()=>{
+      dispatchLoading(false)
+      localStorage.removeItem('token');
+      dispatchToken({ name: '', ok: false, uid: '', demo: '', value: '' });
+      getDispatch_notesTextarea({
+        _id: '',
+        value: '',
+        type: '',
+        user: '',
+        data: '',
+        RowsNumb: 2,
+        name:''
+      })
+      dispatchLogin(false);
+    },3000)
   }
 
   const handleShowItems = (e: MouseEvent) => {
