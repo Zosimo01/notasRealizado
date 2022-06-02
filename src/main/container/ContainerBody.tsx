@@ -209,6 +209,7 @@ export const ContainerBody = () => {
                             </>)
                             : (<div style={{ textAlign: 'center' }} >
                                 <h1>WELCOME YOUR NOTE!!!</h1>
+                                <h1>{authLogin.value}</h1>
                             </div>)
                     }
 

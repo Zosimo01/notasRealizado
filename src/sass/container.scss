@@ -78,13 +78,13 @@
 .log_and_menu button:last-child{
     border-radius: 20px;
     border: solid rgb(8, 138, 138);
-    background-color: rgb(77, 216, 221);
+    background-color: rgb(17, 66, 66);
     margin: 0 5px;
     font-size: large;
-    padding: 5px 5px;
+    padding: 0 10px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     cursor: pointer;
-    color: rgba(107, 37, 9, 0.993);
+    color: rgba(243, 238, 236, 0.993);
     margin-left: 50px;
 }
 
@@ -93,20 +93,21 @@
 
 
  .container_list{
+     border-radius: 5px 5px 0 0;
     box-sizing: border-box;
     display: block;
     width: 210px;
     min-width: 200px;
     max-width: 800px;
-    // overflow: auto;
+  
     resize: horizontal;
     scroll-behavior: smooth;
     padding-bottom: 10px;
-    background-color: rgb(197, 209, 206);
-    padding: 1px;
-    // background-color: rgba(0, 0, 0, 0);
-    // animation: ocultar 2s ease .5s 1 forwards ;
+  
+    background-color: rgba(106, 161, 159, 0.856);
 
+    padding: 1px;
+  
     overflow: hidden;
     padding-top: 25px;
 }
@@ -165,7 +166,8 @@
         overflow-x: hidden;
         height: 100%;
         z-index: 101;
-        max-width: 90%;
+        width: 85%;
+    resize: none;
         
     }
 
@@ -188,7 +190,7 @@
     background-color: rgba(18, 198, 204, 0.644);
     border-radius: 2pc;
     font-size: x-large;
-    border:solid rgb(6, 146, 146);
+    border:solid rgb(2, 48, 48);
     width: 100%;
 }
 
@@ -269,7 +271,7 @@
 
 .items .puntos{
     transform: rotate(90deg);
-    color: green;
+    color: white;
     cursor: pointer;
    float: left;
 }
@@ -288,7 +290,6 @@
     width: 15px;
     float: left;
     overflow: hidden;
-
     margin:0px 0 0 3px;
 }
 
@@ -351,14 +352,17 @@
     min-width: 200px;
     position: relative;
     overflow: hidden;
-    background-color: rgb(22, 16, 16);
+ 
+    background-color: rgba(22, 16, 16, 0.63);
     color: wheat;
 
 }
 
 .button_editables{
-    border-radius: 20px;
-    background-color: rgb(146, 133, 121);
+    border-radius: 20px 20px 0 0;
+
+    background-color: rgb(22, 16, 16);
+
     padding: 2px;
     top: -3px;
     right: 0;
@@ -366,10 +370,10 @@
 }
 
 .button_editables button{
-    color: orange;
     border-radius: 7px;
     border:solid rgb(61, 4, 4);
-    background-color: rgb(61, 4, 4);
+    box-shadow:rgb(168, 168, 76) 5px 2px 20px inset;
+    font-size: large;
 }
 
 .button_editables p{
@@ -398,7 +402,7 @@
 .apuntes{
     padding-top: 5px;
     width: 100%;
-    // background-color: rgb(4, 43, 77);
+ 
     position: absolute;
     height: 100%;
     overflow: hidden;
@@ -415,17 +419,18 @@
 .apuntes textarea{
     outline: none;
     width: 100%;
-    // border: none;
+  
     color: white;
-    background-color: rgb(22, 16, 16);
+   
+    background-color: rgba(22, 16, 16, 0);
+
     max-width: 100%;
     min-width: 300px;
     padding: 15px 5px 5px 5px;
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
     vertical-align: baseline;
-    // overflow: hidden;
-    // position: absolute;
+    
     bottom: 0;
     resize: none;
     font-size: medium;
@@ -433,3 +438,6 @@
     height: 95%;
 }
 
+.apuntes textarea::placeholder{
+    color:wheat
+}

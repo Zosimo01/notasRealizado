@@ -16,9 +16,10 @@
 }
 
 .rotate_title div{
-    top: 50%;
-    left: -10%;
+    // top: 40%;
+    // left: -10%;
     transform: rotate(45deg);
+    margin-right: 100px;
 }
 
 .rotate_title .title_log_out{
@@ -92,6 +93,17 @@
     top: 30%;
 
     padding-right: 10px;
+}
+
+
+@media screen and(max-width:750px) {
+    .container_button{
+        top:20%
+    }
+    .rotate_title div{
+        margin-top: 150px;
+    margin-right: 0;
+    }
 }
 
 .container_button div{
