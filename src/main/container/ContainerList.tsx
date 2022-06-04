@@ -1,5 +1,6 @@
 
 import { FormEvent, MouseEvent, useContext, useEffect, useLayoutEffect, useRef, useState } from "react"
+import { animationFunction } from "../../animation/animation";
 import { CreateItems, TypeItem } from "../components/CreateInputAdd";
 import { ContexAnimation } from "../contexts/Animation";
 import { Contex } from "../contexts/AuthContex";
@@ -7,6 +8,7 @@ import { Contex } from "../contexts/AuthContex";
 import { NotesContex } from "../contexts/NoteContex"
 import { DispatchNotes_create, DispatchNotes_get, DispatchTextarea_create, DispatchTextarea_get } from "../dispatch/DispatchNotes";
 import { addLoading, AnimationLoading, openItemsAndOcult } from "../helpers/AnimationLoading";
+import { getValueAllStyle } from "../helpers/getValueAll";
 import { InputAdd_FILE_FOLDER, ItemsMenuClick, TypesItemMenu } from "../helpers/ItemsMenuClick";
 import { PreventMenuContex } from "../helpers/PreventMenuContex";
 
@@ -301,8 +303,7 @@ export const ContainerList = () => {
             if (target.className === 'items_file') {
                 // dispatch para abrir el documento
                 dispatchOpendTextarea_true()
-
-
+            
 
                 const name = addLoading(target, 'add_loading');
 
@@ -327,6 +328,9 @@ export const ContainerList = () => {
                                 document.querySelector('.' + name)?.remove()
                                 dispatchOpendTextarea_true()
                                 online.current = true;
+
+                                handleOcultItems()
+
                             })
                             .catch(console.log)
                     }
@@ -335,6 +339,7 @@ export const ContainerList = () => {
                     getDispatch_notesTextarea({ ...respuesta, name: target.textContent! });
                     setDispatch_uidItemList(parentNode.id);
                     document.querySelector('.' + name)?.remove()
+                    handleOcultItems()
 
                 }
 
@@ -354,6 +359,32 @@ export const ContainerList = () => {
             }
         }
     }
+
+
+    const handleOcultItems = () => {
+        const node = document.querySelector('#container_list') as HTMLElement;
+        const huno= document.querySelector('.container_title')?.querySelector('h1') as HTMLElement;
+        const value = getValueAllStyle(huno,'display');
+    const {elementValue} = getValueAllStyle(node,'width');
+
+        if(value.elementValue==='block') return;
+        if (node.style.display === 'block') {
+            const data:any = {
+                node,
+                 options:{duration:500},
+                animation:[
+                {position:'absolute',zIndex:'100',height:'100%', left:'0'},
+                {position:'absolute',zIndex:'100',height:'100%',left:`-${elementValue}`}
+              ]
+              }
+        
+             const finish = animationFunction(data)
+             finish.then(()=>{
+               node.style.display = 'none';
+            })
+        } 
+    }
+
 
     useEffect(() => {
         const auth = { ...authLogin }

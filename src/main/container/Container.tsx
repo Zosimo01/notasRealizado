@@ -136,7 +136,7 @@ export const Container = (data: Props) => {
 
         </div>
         <div className="container_title01" >
-          <h1>writing your note!</h1>
+          <h1>WELCOME!!</h1>
         </div>
       </div>
     </div>
