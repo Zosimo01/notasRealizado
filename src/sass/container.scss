@@ -1,4 +1,4 @@
-.container{
+.container {
     padding-top: 10px;
     box-sizing: border-box;
     // background-color: rgba(13, 224, 70, 0.829);
@@ -10,20 +10,23 @@
 
 }
 
-.container_title, .container_title01{
+.container_title,
+.container_title01 {
     text-align: center;
     position: relative;
     padding-bottom: 6px;
     color: aliceblue;
     height: 40px;
 }
-.container_title h1{
-    font-family:monospace;
+
+.container_title h1 {
+    font-family: monospace;
 }
-.menu_body{
+
+.menu_body {
 
     width: 50px;
-    height:35px;
+    height: 35px;
     border-radius: 50px;
     position: absolute;
     right: 0;
@@ -34,18 +37,18 @@
 }
 
 
-.container_note{
+.container_note {
     box-sizing: border-box;
-    
+
     display: flex;
     width: 80%;
     height: 100%;
     position: relative;
-    margin: auto; 
-    flex-direction: column;      
+    margin: auto;
+    flex-direction: column;
 }
 
-.contaienr_cuerpo{
+.contaienr_cuerpo {
     display: flex;
     position: relative;
     height: 100%;
@@ -54,28 +57,27 @@
 }
 
 @media screen and(max-width:950px) {
-    .container_note{
+    .container_note {
         width: 90%;
-    }   
+    }
 }
 
 @media screen and(max-width:750px) {
-    .container_note{
+    .container_note {
         width: 98%;
     }
-    .container_body{
+
+    .container_body {
         flex: 3 1;
     }
 }
 
-.log_and_menu{
+.log_and_menu {
     display: flex;
     position: absolute;
 }
-.log_and_menu button:first-child{
-    border: solid rgb(7, 221, 221);
-}
-.log_and_menu button:last-child{
+
+.log_and_menu .menu_itemButtom_01,.menu_itemButtom_03 {
     border-radius: 20px;
     border: solid rgb(8, 138, 138);
     background-color: rgb(17, 66, 66);
@@ -85,40 +87,99 @@
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     cursor: pointer;
     color: rgba(243, 238, 236, 0.993);
-    margin-left: 50px;
+    margin-left: 10px;
+}
+
+.menu_itemButtom {
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+}
+
+.menu_itemButtom img {
+    width: 100%;
+}
+
+.menu_itemButtom_02 {
+    display: block;
+        border-radius: 20px;
+        border: solid rgb(8, 138, 138);
+        background-color: rgb(17, 66, 66);
+        font-size: small;
+        padding: 0 5px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        cursor: pointer;
+        color: rgba(243, 238, 236, 0.993);
+        margin-left: 5px;
+}
+
+@media screen and(max-width:430px) {
+    .menu_itemButtom_01 {
+        display: none;
+    }
+
+    .menu_itemButtom_02 {
+        display: block;
+        border-radius: 20px;
+        border: solid rgb(8, 138, 138);
+        background-color: rgb(17, 66, 66);
+        font-size: small;
+        padding: 0 5px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        cursor: pointer;
+        color: rgba(243, 238, 236, 0.993);
+        margin-left: 5px;
+    }
+
+    .menu_container{
+        display: none;
+    }
+}
+
+//MENU CONTAINER 
+.menu_container{
+    width: 100%;
+    display: none;
+    padding: 10px 0;
+    border-right: solid rgb(120, 8, 155);
+    position: absolute;
+    z-index: 200;
+    height: 99%;
+    background-color: rgba(43, 16, 16, 0.925);
 }
 
 //CONTAINER LIST
 
 
 
- .container_list{
-     border-radius: 5px 5px 0 0;
+.container_list {
+    border-radius: 5px 5px 0 0;
     box-sizing: border-box;
     display: block;
     width: 210px;
     min-width: 200px;
     max-width: 800px;
-  
+
     resize: horizontal;
     scroll-behavior: smooth;
     padding-bottom: 10px;
-  
+
     background-color: rgba(106, 161, 159, 0.856);
 
     padding: 1px;
-  
+
     overflow: hidden;
     padding-top: 25px;
 }
 
-.risize_container{
+.risize_container {
     position: relative;
     width: 2px;
     bottom: 0;
 }
 
-.risize_container img{
+.risize_container img {
     position: absolute;
     color: red;
     z-index: 999;
@@ -132,81 +193,90 @@
 
 
 @keyframes ocultar {
-    0%{
+    0% {
         position: relative;
         left: 0;
     }
-    
-    
-    100%{ 
+
+
+    100% {
         position: relative;
         left: 100px;
-}
+    }
 }
 
-.menu_itemButtom{
-    border:none;
-    border-radius: 50%;
-    width: 35px;
-    height:35px;
-}
-.menu_itemButtom img{
-    width: 100%;
-}
 
 
 @media screen and(max-width:750px) {
 
-    .container_title h1{
+    .container_title h1 {
         display: none;
     }
-    .container_list{
+
+    .container_list {
         display: none;
         position: absolute;
         overflow-x: hidden;
         height: 100%;
         z-index: 101;
         width: 85%;
-    resize: none;
-        
+        resize: none;
+
     }
 
 }
 
 
 
-.cotainer_option_list{
+.cotainer_option_list {
     width: 200px;
-    position:absolute;
+    position: absolute;
     top: 0;
     max-width: 210px;
     z-index: 1;
-}
-.cotainer_option_list button{
-    width: 50%;
-    margin: auto;
-}
-.cotainer_option_list .add_folder{
-    background-color: rgba(18, 198, 204, 0.644);
-    border-radius: 2pc;
-    font-size: x-large;
-    border:solid rgb(2, 48, 48);
-    width: 100%;
+    // display: flex;
 }
 
-.container_items{
+.cotainer_option_list button {
+    // width: 50%;
+    margin: auto;
+    background-color: rgba(18, 198, 204, 0.644);
+    border-radius: 2pc;
+
+}
+
+.cotainer_option_list .añadir {
+    padding: 5px;
+    font-size: large;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+    background-color: brown;
+    border-color: greenyellow;
+}
+
+.cotainer_option_list .add_folder {
+    font-size: x-large;
+    border: solid rgb(2, 48, 48);
+    width: 100%;
+
+}
+
+.container_items {
     float: right;
     font-size: 20px;
     width: 100%;
     // padding-top: 25px;
-    
+
     height: 100%;
     overflow: auto;
 }
+
 // ESTILOS DE ESCROLLL
-.container_items::-webkit-scrollbar{
-    width: 8px;     /* Tamaño del scroll en vertical */
-    height: 8px;    /* Tamaño del scroll en horizontal */
+.container_items::-webkit-scrollbar {
+    width: 8px;
+    /* Tamaño del scroll en vertical */
+    height: 8px;
+    /* Tamaño del scroll en horizontal */
     // display: none;  /* Ocultar scroll */
 }
 
@@ -224,19 +294,20 @@
 .container_items::-webkit-scrollbar-thumb:active {
     background-color: #ce1010;
 }
+
 ///////7
-.icons{
+.icons {
     width: 50px;
     // height: 100px;
     background-color: aquamarine;
 }
 
-.pruebas_items{
+.pruebas_items {
     width: 30px;
     background: gray;
 }
 
-.items{
+.items {
     position: relative;
     margin-top: 10px;
     margin-left: 5px;
@@ -249,13 +320,13 @@
     min-width: 100px;
 }
 
-.items p{
-    
+.items p {
+
     border-bottom: 2px red;
-  
+
     color: rgb(11, 24, 97);
-    cursor:pointer;
-    width:auto;
+    cursor: pointer;
+    width: auto;
     white-space: nowrap;
     // text-align: justify;
     text-overflow: ellipsis;
@@ -269,49 +340,52 @@
     font-weight: bold;
 }
 
-.items .puntos{
+.items .puntos {
     transform: rotate(90deg);
     color: white;
     cursor: pointer;
-   float: left;
+    float: left;
+    padding: 0 2px;
 }
 
-.puntos:hover{
-    color: whitesmoke
-    
+.puntos:hover {
+    color: rgb(150, 33, 33);
+    background-color: antiquewhite;
 }
 
-.items p:hover{
+.items p:hover {
     color: rgb(207, 70, 28);
 
 }
 
-.items img, .items span{
+.items img,
+.items span {
     width: 15px;
     float: left;
     overflow: hidden;
-    margin:0px 0 0 3px;
+    margin: 0px 0 0 3px;
 }
 
-.items .flecha{
+.items .flecha {
     color: white;
 }
-.items img{
+
+.items img {
     float: left;
     margin-top: 5px;
     margin-right: 5px;
 }
 
-.inputAddFolder{
-        margin-top: 5px;
-        width: 97%;
-        padding: 1px;
-        outline: none;
-        display: none;
+.inputAddFolder {
+    margin-top: 5px;
+    width: 97%;
+    padding: 1px;
+    outline: none;
+    display: none;
 }
 
 
-.itemsMenu{
+.itemsMenu {
     display: none;
     position: absolute;
     z-index: 102;
@@ -319,46 +393,65 @@
     color: white;
     top: 0;
     left: 0;
-    
+
 }
 
-.itemsMenu p{
+.itemsMenu p {
     padding: 5px;
     cursor: pointer;
 }
-.itemsMenu p:active{
+
+.itemsMenu p:active {
     background-color: aqua;
 }
-.itemsMenu p:hover{
+
+.itemsMenu p:hover {
     background-color: rgb(49, 134, 134);
 }
+
 // element add file and folder
 
-#inputForAdd_FILI_FOLDER{
+#inputForAdd_FILI_FOLDER {
     width: 95%;
     padding: 3px;
     margin-top: 10px;
 }
 
-#submitForAdd_FILI_FOLDER{
-    display: none;
+#submitForAdd_FILI_FOLDER {
+    position: absolute;
+    padding: 2px 5px;
+    background-color: brown;
+    border-color: white;
+    left: 0;
+    top: 30%;
+    top: 0;
+}
+
+.renombrar_01 {
+
+    margin-left: 20px;
+    margin-top: 5px;
+    padding: 2px 5px;
+    background-color: brown;
+    border-color: white;
+
 }
 
 // //CONTAINER BODY
-.container_body{
+.container_body {
 
     flex: 2 1;
     max-width: 100%;
     min-width: 200px;
     position: relative;
     overflow: hidden;
- 
+
     background-color: rgba(22, 16, 16, 0.63);
     color: wheat;
 
 }
 
-.button_editables{
+.button_editables {
     border-radius: 20px 20px 0 0;
 
     background-color: rgb(22, 16, 16);
@@ -366,17 +459,17 @@
     padding: 2px;
     top: -3px;
     right: 0;
-    position: absolute; 
+    position: absolute;
 }
 
-.button_editables button{
+.button_editables button {
     border-radius: 7px;
-    border:solid rgb(61, 4, 4);
-    box-shadow:rgb(168, 168, 76) 5px 2px 20px inset;
+    border: solid rgb(61, 4, 4);
+    box-shadow: cadetblue 5px 2px 20px inset;
     font-size: large;
 }
 
-.button_editables p{
+.button_editables p {
     color: greenyellow;
     background-color: rgba(5, 238, 5, 0.425);
     text-shadow: black 2px 2px 3px;
@@ -388,40 +481,45 @@
 }
 
 @keyframes animate {
-    50%{ font-size: 20px; }
-    90%{ font-size: 20px; }
+    50% {
+        font-size: 20px;
+    }
+
+    90% {
+        font-size: 20px;
+    }
 }
 
-.button_editables button{
+.button_editables button {
     margin: auto;
     margin: 5px 5px;
     padding: 2px;
-    
+
 }
 
-.apuntes{
+.apuntes {
     padding-top: 5px;
     width: 100%;
- 
+
     position: absolute;
     height: 100%;
     overflow: hidden;
 }
 
-.apuntes .namefolder{
+.apuntes .namefolder {
     position: absolute;
     padding: 0px 10px;
     font-size: small;
-    font-family:'Times New Roman', Times, serif;
+    font-family: 'Times New Roman', Times, serif;
     color: red;
 }
 
-.apuntes textarea{
+.apuntes textarea {
     outline: none;
     width: 100%;
-  
+
     color: white;
-   
+
     background-color: rgba(22, 16, 16, 0);
 
     max-width: 100%;
@@ -430,14 +528,14 @@
     font-size: 20px;
     font-family: Arial, Helvetica, sans-serif;
     vertical-align: baseline;
-    
+
     bottom: 0;
     resize: none;
     font-size: medium;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     height: 95%;
 }
 
-.apuntes textarea::placeholder{
-    color:wheat
+.apuntes textarea::placeholder {
+    color: wheat
 }

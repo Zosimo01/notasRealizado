@@ -5,8 +5,8 @@ export const CreateInputAdd = (htmlElement_id: string) => {
     const nodeBrother = document.getElementById(htmlElement_id) as HTMLElement ;
 
     const input = `<input type='text' id='inputForAdd_FILI_FOLDER' form='formAddFile'
-                 name='addname' maxlength='50' />`;
-    const submit = `<input type='submit' name='submitAddFile' form='formAddFile' id='submitForAdd_FILI_FOLDER'
+                 name='addname' maxlength='50' autocomplete='off' />`;
+    const submit = `<input type='submit' value='guardar' name='submitAddFile' form='formAddFile' id='submitForAdd_FILI_FOLDER'
     />`;
 
     nodeBrother.insertAdjacentHTML('afterend', input);
@@ -42,7 +42,7 @@ export const CreateItems =({parentNode,type,id,value,_id,margin}:PropsItems)=>{
      style="margin-left:${margin}px;
      width='100%'; ">
 
-      <span class="puntos" data-id=${id}>:::</span>
+      <span class="puntos" data-id=${id}>...</span>
      
      ${type==='folder' ?'<span class="flecha" >></span>':''} 
      

@@ -63,8 +63,7 @@ export const ContainerList = () => {
 
 
     const handleActiveAdd_FOLDER = (e: MouseEvent) => {
-
-
+     
         const nodes = e.target as HTMLButtonElement;
 
         uid_htmlElement.current = nodes.id;
@@ -94,8 +93,6 @@ export const ContainerList = () => {
 
         if (resp?.name === 'eliminar') {
             dispatchLoading_true();
-            //    const _id = notes.getnoteList?.user;
-            //    const idContex = notes.uidContexItem;
 
         }
 
@@ -162,7 +159,7 @@ export const ContainerList = () => {
 
         const input = document.getElementById('inputForAdd_FILI_FOLDER') as HTMLInputElement;
         const value = input.value;
-
+       
         if (value.length < 1) return;
         const id = (Math.random() * 10000).toString().slice(-5);
 
@@ -201,7 +198,7 @@ export const ContainerList = () => {
             }, authLogin.demo).then(resp => {
 
                 setDispatch_notesTextarea(resp.note);
-                getDispatch_notesTextarea({...resp.note,name:value});
+                getDispatch_notesTextarea({ ...resp.note, name: value });
                 setDispatch_uidItemList(resp._id)
                 dispatchOpendTextarea_true()
             }).catch(console.log)
@@ -261,11 +258,11 @@ export const ContainerList = () => {
     }
 
     //CONTEXMENU    
-    const handleContexMenu=(e:MouseEvent)=>{
+    const handleContexMenu = (e: MouseEvent) => {
         const target = e.target as HTMLElement;
-        if(target.matches('span')) return;
-        const id=target.id;
-        handlePreventContexMenu(id,e.clientX,e.clientY);
+        if (target.matches('span')) return;
+        const id = target.id;
+        handlePreventContexMenu(id, e.clientX, e.clientY);
     }
 
     /// ITEM OPEN
@@ -277,18 +274,18 @@ export const ContainerList = () => {
         if (target.matches('span')) {
             const span = target.dataset.id;
             if (!span) return;
-            
+
             const p = document.getElementById(span) as HTMLParamElement;
-            handlePreventContexMenu(p.id,e.clientX,e.clientY)
-            
-            
-            
+            handlePreventContexMenu(p.id, e.clientX, e.clientY)
+
+
+
         } else {
-            
-            
+
+
             if (target.matches('p') && target.id !== controlColor.id) {
                 controlColor.style && (controlColor.style.backgroundColor = '');
-            
+
                 // target.style.backgroundColor = 'rgba(182, 155, 177, 0.603)';
                 controlColorItem.current = target;
 
@@ -296,8 +293,8 @@ export const ContainerList = () => {
                 target.style.color = 'red';
                 controlColorItemColor.current = target;
             }
-            
-            
+
+
             if (!target.matches('p')) return;
             const parentNode = target.parentNode as HTMLElement;
 
@@ -323,7 +320,7 @@ export const ContainerList = () => {
                         DispatchTextarea_get(data, authLogin.demo)
                             .then(resp => {
 
-                                getDispatch_notesTextarea({...resp.note,name:target.textContent});
+                                getDispatch_notesTextarea({ ...resp.note, name: target.textContent });
                                 setDispatch_notesTextarea(resp.note);
                                 setDispatch_uidItemList(parentNode.id);
 
@@ -335,7 +332,7 @@ export const ContainerList = () => {
                     }
                 } else {
 
-                    getDispatch_notesTextarea({...respuesta,name:target.textContent!});
+                    getDispatch_notesTextarea({ ...respuesta, name: target.textContent! });
                     setDispatch_uidItemList(parentNode.id);
                     document.querySelector('.' + name)?.remove()
 
@@ -406,68 +403,68 @@ export const ContainerList = () => {
     return (
         <>
 
-        <div className="container_list" id="container_list" >
-            <div className="cotainer_option_list" id="cotainer_option_list" >
-                {/* <button>filter</button>
-                <button>search</button> */}
-                <button className="add_folder" id="add_folder" onClick={handleActiveAdd_FOLDER} >+</button>
-
-            </div>
-            <form id="formAddFile" onSubmit={handleFromAdd_FOLDERyFILE} ></form>
-            {
-                valueAnamation.loadingItems && <AnimationLoading />
-
-            }
-            <div className="container_items"
-                onClick={handleItemOpen}
-                id="container_items" >
+            <div className="container_list" id="container_list" >
+                <div className="cotainer_option_list" id="cotainer_option_list" >
+                    {/* <button>filter</button>
+                 */}
+                    <button className="add_folder" id="add_folder" onClick={handleActiveAdd_FOLDER} >+</button>
+                </div>
+                <form id="formAddFile" onSubmit={handleFromAdd_FOLDERyFILE} >
+                </form>
                 {
-                    listasDeItems.map((resp, i) => (
-                        <div className="items" key={i}
-                        id={resp._id}
-                        onContextMenu={handleContexMenu}
-                        tabIndex={-1}
-                        >
-                            <span className="puntos" data-id={resp.id}>::: </span>
-                            <span className="flecha" >{'>'}</span>
-                            <img src="./img/folder2.png" alt="plop" />
+                    valueAnamation.loadingItems && <AnimationLoading />
 
-                            <p className={'items_' + resp.type} id={resp.id}
-                            >
-
-                                {resp.value}
-                           
-                            </p>
-                        </div>
-                    ))
                 }
-                {smgAdvertencia && <p style={{
-                    padding: '5px'
-                }}>{smgAdvertencia}</p>}
+                <div className="container_items"
+                    onClick={handleItemOpen}
+                    id="container_items" >
+                    {
+                        listasDeItems.map((resp, i) => (
+                            <div className="items" key={i}
+                                id={resp._id}
+                                onContextMenu={handleContexMenu}
+                                tabIndex={-1}
+                            >
+                                <span className="puntos" data-id={resp.id}>... </span>
+                                <span className="flecha" >{'>'}</span>
+                                <img src="./img/folder2.png" alt="plop" />
+
+                                <p className={'items_' + resp.type} id={resp.id}
+                                >
+
+                                    {resp.value}
+
+                                </p>
+                            </div>
+                        ))
+                    }
+                    {smgAdvertencia && <p style={{
+                        padding: '5px'
+                    }}>{smgAdvertencia}</p>}
+
+                </div>
+
+                <aside className="itemsMenu" ref={menuItems}
+                    tabIndex={-1}
+                    style={{
+                        top: positons.top,
+                        left: positons.left,
+
+                    }}
+                    onClick={handleClickItems}
+                >
+                    <p data-nameitem='file' >add file</p>
+                    <p data-nameitem='folder'>add folder</p>
+                    <p data-nameitem='renombrar'>renombrar</p>
+                   
+                    <p data-nameitem='eliminar' >eliminar</p>
+                </aside>
+
+                {/* REMOMBRAR LOS ITEMS */}
+                <form id="items_renomber" style={{ display: 'none' }} ></form>
+                <input type="submit" form="items_renomber" style={{ display: 'none' }} />
 
             </div>
-
-            <aside className="itemsMenu" ref={menuItems}
-                tabIndex={-1}
-                style={{
-                    top: positons.top,
-                    left: positons.left,
-                    
-                }}
-                onClick={handleClickItems}
-                >
-                <p data-nameitem='file' >add file</p>
-                <p data-nameitem='folder'>add folder</p>
-                <p data-nameitem='renombrar'>renombrar</p>
-                <p data-nameitem='copiar' >copiar</p>
-                <p data-nameitem='eliminar' >eliminar</p>
-            </aside>
-
-            {/* REMOMBRAR LOS ITEMS */}
-            <form id="items_renomber" style={{ display: 'none' }} ></form>
-            <input type="submit" form="items_renomber" style={{ display: 'none' }} />
-            
-        </div>
-                </>
+        </>
     )
 }

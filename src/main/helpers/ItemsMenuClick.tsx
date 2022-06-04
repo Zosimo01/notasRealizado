@@ -55,17 +55,22 @@ export const ItemsMenuClick = ({action,htmlElement_id,getDispatch_uidDelete,disp
   }
 }
 
+
 export const InputAdd_FILE_FOLDER = (htmlElement_id: string) => {
-  
   const { input_id, submit_id } = CreateInputAdd(htmlElement_id)
-  const element = document.getElementById(input_id) as HTMLElement;
+  const element = document.getElementById(input_id) as HTMLInputElement;
   element.focus();
-  element.onblur = function () {
-    element.remove()
-    const submit = document.getElementById(submit_id) as HTMLInputElement;
-    submit.remove()
+
+    element.onblur = function () {
+      const submit = document.getElementById(submit_id) as HTMLInputElement;  
+      
+        submit.click()
+      
+        element.remove()
+        submit.remove();
+    
+    
   }
-  // element.blur();
   return { element:element, parentNode: element.parentNode, smg:'add'};
 }
 
@@ -98,11 +103,17 @@ export const RenombrarItems = (htmlElement_id:string,demo:string) => {
   const txt = nodes.textContent as string;
   const input = ` <input type='text' form='items_renomber'
    required='true' class='renombrar'
-   name='renombrar' maxlength='50' />`;
+   name='renombrar' maxlength='50' /><br/> `;
 
+   const submit = `
+    <input type='submit' value='guardar' form='items_renomber'
+    class='renombrar_01'
+    />
+   `
 
-  nodes.innerHTML=input;
-  const inputNeto = nodes.querySelector('input') as HTMLInputElement;
+   nodes.innerHTML=input;
+   nodes.innerHTML+=submit
+  const inputNeto = nodes.querySelector('.renombrar') as HTMLInputElement;
   inputNeto.value=txt;
 
   
